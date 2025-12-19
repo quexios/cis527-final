@@ -11,4 +11,7 @@ app.post('/contact', async (req, res) => {
     res.sendStatus(200);
 });
 
-app.listen(3000);
+const PORT = 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend listening on port ${PORT}`);
+});
