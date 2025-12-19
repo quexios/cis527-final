@@ -1,10 +1,15 @@
 FROM node:18-alpine
+
+RUN apk add --no-cache nginx
+
+RUN mkdir -p /run/nginx
+COPY frontend/ /usr/share/nginx/html
+
 WORKDIR /app
 COPY backend/package*.json ./
 RUN npm install
 COPY backend/ .
 
-FROM nginx:alpine
-COPY frontend/ /usr/share/nginx/html
 EXPOSE 80
-CMD ["node", "/app/server.js"]
+
+CMD node server.js & nginx -g 'daemon off;'
