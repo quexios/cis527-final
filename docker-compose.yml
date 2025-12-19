@@ -7,4 +7,6 @@ services:
       - "3000:3000"
     environment:
       - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+    env_file:
+      - .env
     restart: always
