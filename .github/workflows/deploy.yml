@@ -20,5 +20,6 @@ jobs:
             cd /var/www/portfolio || git clone https://github.com/quexios/cis527-final /var/www/portfolio
             cd /var/www/portfolio
             git pull origin main
+            sudo puppet apply puppet/manifests/site.pp
             export DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}
             sudo docker compose up -d --build
