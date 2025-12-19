@@ -9,7 +9,7 @@ WORKDIR /app
 COPY backend/package*.json ./
 RUN npm install
 COPY backend/ .
-
+COPY default.conf /etc/nginx/http.d/default.conf
 EXPOSE 80
 
 CMD node server.js & nginx -g 'daemon off;'
