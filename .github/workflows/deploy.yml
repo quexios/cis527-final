@@ -21,4 +21,4 @@ jobs:
             cd /var/www/portfolio
             git pull origin main
             export DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}
-            docker-compose up -d --build
+            sudo docker compose up -d --build
