@@ -1,0 +1,27 @@
+name: Deploy Portfolio
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: docker build -t my-portfolio .
+
+      - name: Deploy to DigitalOcean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+                cd /home/root/portfolio-site || git clone https://github.com/youruser/yourrepo.git /home/root/portfolio-site
+                cd /home/root/portfolio-site
+                git pull origin main
+                docker build -t portfolio-site .
+                docker stop portfolio-container || true
+                docker rm portfolio-container || true
+                docker run -d --name portfolio-container -p 80:80 portfolio-site
