@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
 <form id="contactForm">
     <input type="text" id="hp_field" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -7,6 +10,7 @@
     <button type="submit">Send</button>
 </form>
 <p>this is a site change</p>
+</body>
 <script>
     document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -24,3 +28,4 @@
       if(res.ok) alert("Sent to Discord!");
     });
 </script>
+</html>
